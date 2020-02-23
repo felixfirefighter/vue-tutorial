@@ -8,10 +8,10 @@
     <div class="card-list">
       <Card
         v-for="card in cards"
-        :key="card.id"
         v-bind="card"
-        @updateLog="updateLog"
+        :key="card.id"
         :isDelayed="isDelayed"
+        @updateLog="updateLog"
       />
     </div>
     <Logger :logs="logs" />

@@ -25,20 +25,6 @@ export default {
       text: "Card Text"
     }
   },
-  methods: {
-    getCircularReplacer() {
-      const seen = new WeakSet()
-      return (key, value) => {
-        if (typeof value === "object" && value !== null) {
-          if (seen.has(value)) {
-            return
-          }
-          seen.add(value)
-        }
-        return value
-      }
-    }
-  },
   beforeCreate() {
     // cannot read id of undefined
     // this.$emit("updateLog", `beforeCreated: Card ${this.id}`)
@@ -90,10 +76,6 @@ export default {
     this.$emit("updateLog", `mounted: Card ${this.id}`)
     this.$emit("updateLog", `mounted: computed: doubleText: ${this.doubleText}`)
     this.$emit("updateLog", `mounted: data: text: ${this.text}`)
-    // this.$emit(
-    //   "updateLog",
-    //   `created: refs: card: ${JSON.stringify(this.$refs.card, this.getCircularReplacer())}`
-    // )
     console.log(this.$refs.card)
   },
   beforeUpdate() {
