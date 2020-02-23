@@ -32,7 +32,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 40rem;
+  height: 50vh;
   padding: 0 1rem;
   overflow: scroll;
 }
