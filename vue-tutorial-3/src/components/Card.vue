@@ -26,9 +26,9 @@ export default {
     }
   },
   beforeCreate() {
-    // cannot read id of undefined
+    // Error, not able to use these inside beforeCreate
     // this.$emit("updateLog", `beforeCreated: Card ${this.id}`)
-
+    // this.updateLog('beforeCreate')
     this.$emit(
       "updateLog",
       `beforeCreated: computed: doubleText: <span class="important">${this.doubleText}</span>`
@@ -36,11 +36,6 @@ export default {
     this.$emit(
       "updateLog",
       `beforeCreated: data: text: <span class="important">${this.text}</span>`
-    )
-
-    this.$emit(
-      "updateLog",
-      `beforeCreated: refs: card: <span class="important">${this.$refs.card}</span>`
     )
   },
   async created() {
@@ -52,61 +47,33 @@ export default {
       })
     }
 
-    this.$emit("updateLog", `created: Card ${this.id}`)
-    this.$emit("updateLog", `created: computed: doubleText: ${this.doubleText}`)
-    this.$emit("updateLog", `created: data: text: ${this.text}`)
-    this.$emit(
-      "updateLog",
-      `created: refs: card: <span class="important">${this.$refs.card}</span>`
-    )
+    this.updateLog('created')
   },
   beforeMount() {
-    this.$emit("updateLog", `beforeMount: Card ${this.id}`)
-    this.$emit(
-      "updateLog",
-      `beforeMount: computed: doubleText: ${this.doubleText}`
-    )
-    this.$emit("updateLog", `beforeMount: data: text: ${this.text}`)
-    this.$emit(
-      "updateLog",
-      `beforeMount: refs: card: <span class="important">${this.$refs.card}</span>`
-    )
+    this.updateLog('beforeMount')
   },
   async mounted() {
-    this.$emit("updateLog", `mounted: Card ${this.id}`)
-    this.$emit("updateLog", `mounted: computed: doubleText: ${this.doubleText}`)
-    this.$emit("updateLog", `mounted: data: text: ${this.text}`)
-    console.log(this.$refs.card)
+    this.updateLog('mounted')
   },
   beforeUpdate() {
-    this.$emit("updateLog", `beforeUpdate: Card ${this.id}`)
-    this.$emit(
-      "updateLog",
-      `beforeUpdate: computed: doubleText: ${this.doubleText}`
-    )
-    this.$emit("updateLog", `beforeUpdate: data: text: ${this.text}`)
-    console.log(this.$refs.card)
+    this.updateLog('beforeUpdate')
   },
   updated() {
-    this.$emit("updateLog", `updated: Card ${this.id}`)
-    this.$emit("updateLog", `updated: computed: doubleText: ${this.doubleText}`)
-    this.$emit("updateLog", `updated: data: text: ${this.text}`)
-    console.log(this.$refs.card)
+    this.updateLog('updated')
   },
   beforeDestroy() {
-    this.$emit("updateLog", `beforeDestroy: Card ${this.id}`)
-    this.$emit(
-      "updateLog",
-      `beforeDestroy: computed: doubleText: ${this.doubleText}`
-    )
-    this.$emit("updateLog", `beforeDestroy: data: text: ${this.text}`)
-    console.log(this.$refs.card)
+    this.updateLog('beforeDestroyed')
   },
   destroyed() {
-    this.$emit("updateLog", `destroy: Card ${this.id}`)
-    this.$emit("updateLog", `destroy: computed: doubleText: ${this.doubleText}`)
-    this.$emit("updateLog", `destroy: data: text: ${this.text}`)
-    console.log(this.$refs.card)
+    this.updateLog('destroyed')
+  },
+  methods: {
+    updateLog(lifecycle) {
+      this.$emit("updateLog", `${lifecycle}: Card ${this.id}`)
+      this.$emit("updateLog", `${lifecycle}: computed: doubleText: ${this.doubleText}`)
+      this.$emit("updateLog", `${lifecycle}: data: text: ${this.text}`)
+      console.log(this.$refs.card)
+    }
   }
 }
 </script>
